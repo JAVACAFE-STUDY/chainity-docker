@@ -13,10 +13,8 @@ RUN apt-get install -y git
 RUN apt-get install build-essential
 
 # Community-rewards 코드 받기
-RUN git clone https://github.com/clghks/community-rewards.git
+RUN git clone https://github.com/JAVACAFE-STUDY/community-rewards.git
 WORKDIR /usr/src/app/community-rewards
-RUN git branch feature/api
-RUN git checkout feature/api
 
 RUN npm install
 RUN npm install --prefix backend/
