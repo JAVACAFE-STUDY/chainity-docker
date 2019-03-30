@@ -1,0 +1,25 @@
+FROM node:8
+
+MAINTAINER chihwan "clghks@gmail.com"
+
+# 라이브러리 업데이트
+RUN apt-get update
+
+WORKDIR /usr/src/app
+
+# git 설치
+RUN apt-get install -y git
+
+RUN apt-get install build-essential
+
+# Community-rewards 코드 받기
+RUN git clone https://github.com/JAVACAFE-STUDY/community-rewards.git
+WORKDIR /usr/src/app/community-rewards
+
+RUN npm install
+RUN npm install --prefix frontend/
+
+WORKDIR /usr/src/app/community-rewards/frontend
+
+EXPOSE 8080
+CMD [ "npm", "start" ]
