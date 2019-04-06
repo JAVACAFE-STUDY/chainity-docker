@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:8 as build-stage
 
 MAINTAINER chihwan "clghks@gmail.com"
 
@@ -20,6 +20,10 @@ RUN npm install
 RUN npm install --prefix frontend/
 
 WORKDIR /usr/src/app/community-rewards/frontend
+RUN npm run build
 
-EXPOSE 8080
-CMD [ "npm", "start" ]
+# production stage
+FROM nginx:1.14.2 as production-stage
+COPY --from=build-stage /usr/src/app/community-rewards/frontend/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

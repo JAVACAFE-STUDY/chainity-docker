@@ -17,5 +17,5 @@ docker run -d -p 3000:3000 community-rewards/backend
 # Admin 서버 빌드 및 실행 
 ```
 docker build -t community-rewards/frontend .
-docker run -d -p 8080:8080 community-rewards/frontend
+docker run -d -p 8080:80 community-rewards/frontend
 ```
