@@ -14,7 +14,7 @@ docker run -d --name ethereum-node -v /Users/alice/ethereum:/root -p 8545:8545 e
 cd /
 sudo mkdir /data
 cd data
-sudo mkdir /profile
+sudo mkdir profile
 sudo chmod -Rf 777 profile
 
 docker build -t community-rewards/backend .
