@@ -1,0 +1,26 @@
+FROM node:8 as build-stage
+
+MAINTAINER chihwan "clghks@gmail.com"
+
+# 라이브러리 업데이트
+RUN apt-get update
+
+WORKDIR /usr/src/app
+
+# git 설치
+RUN apt-get install -y git
+
+RUN apt-get install build-essential
+
+# Community-rewards 코드 받기
+RUN git clone https://github.com/clghks/community-rewards-frontend
+WORKDIR /usr/src/app/community-rewards-frontend
+
+RUN npm install
+RUN npm run webpack:build
+
+# production stage
+FROM nginx:1.14.2 as production-stage
+COPY --from=build-stage /usr/src/app/community-rewards-frontend/build/www /usr/share/nginx/html
+EXPOSE 3000
+CMD ["nginx", "-g", "daemon off;"]
