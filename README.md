@@ -1,15 +1,15 @@
 # 몽고 디비 실행 
-```
+```zsh
 docker run --name mongo -d -p 27017:27017 -v /data:/data/db mongo --noauth --bind_ip=0.0.0.0
 ```
 
 # Geth 실행 
-```
+```zsh
 docker run -d --name ethereum-node -v /Users/alice/ethereum:/root -p 8545:8545 ethereum/client-go --rpc --rinkeby --rpcaddr "0.0.0.0"
 ```
 
 # API 서버 빌드 및 실행 
-```
+```zsh
 // profile 파일 경로
 cd /
 sudo mkdir /data
@@ -36,13 +36,25 @@ sudo docker start 9c1832636416
 
 
 # Admin 서버 빌드 및 실행 
-```
+### 실행 명령어
+```zsh
+# 프로젝트 루트 하위 경로 이동
+cd APIServer
+
+# .env 환경 설정 파일 수정(slack 통해 공유)
+vi .env
+
+# docker image 생성
 docker build -t community-rewards/admin .
+
+# docker container 실행
 docker run -d -p 8080:80 community-rewards/admin
 ```
+### TODO
+- 소스 코드 변경 반영 (현재 이미지 생성 시점에 받은 소스코드를 받음)
 
 # Web 서버 빌드 및 실행 
-```
+```zsh
 docker build -t community-rewards/web .
 docker run -d -p 9000:80 community-rewards/web
 ```
