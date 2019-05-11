@@ -18,7 +18,7 @@ sudo mkdir profile
 sudo chmod -Rf 777 profile
 
 docker build -t community-rewards/backend .
-docker run -d -p 3000:3000 -v /data/profile:/data/profile -v /etc/letsencrypt:/root/letsencrypt community-rewards/backend
+docker run -d -p 3000:3000 -v /data/profile:/data/profile community-rewards/backend
 ```
 
 # Admin 서버 빌드 및 실행 
@@ -34,7 +34,7 @@ vi .env
 docker build -t community-rewards/admin .
 
 # docker container 실행
-docker run -d -p 8080:80 -v /etc/letsencrypt:/root/letsencrypt community-rewards/admin
+docker run -d -p 8080:80 community-rewards/admin
 ```
 ### TODO
 - 소스 코드 변경 반영 (현재 이미지 생성 시점에 받은 소스코드를 받음)
@@ -42,5 +42,5 @@ docker run -d -p 8080:80 -v /etc/letsencrypt:/root/letsencrypt community-rewards
 # Web 서버 빌드 및 실행 
 ```zsh
 docker build -t community-rewards/web .
-docker run -d -p 9000:80 -v /etc/letsencrypt:/root/letsencrypt community-rewards/web
+docker run -d -p 9000:80 community-rewards/web
 ```
