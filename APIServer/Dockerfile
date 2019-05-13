@@ -11,7 +11,6 @@ WORKDIR /usr/src/app
 RUN apt-get install -y git
 
 RUN apt-get install build-essential
-RUN npm install pm2
 
 # Community-rewards 코드 받기
 RUN git clone https://github.com/JAVACAFE-STUDY/community-rewards.git
