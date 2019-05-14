@@ -11,7 +11,6 @@ WORKDIR /usr/src/app
 RUN apt-get install -y git
 
 RUN apt-get install build-essential
-RUN npm install -g pm2
 
 # Community-rewards 코드 받기
 RUN git clone https://github.com/JAVACAFE-STUDY/community-rewards.git
@@ -23,4 +22,4 @@ WORKDIR /usr/src/app/community-rewards/backend
 COPY .env .env
 
 EXPOSE 3000
-CMD [ "npm", "run", "deploy" ]
+CMD [ "npm", "run", "deploy:docker" ]
