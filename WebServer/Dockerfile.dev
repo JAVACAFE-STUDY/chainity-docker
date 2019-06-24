@@ -12,9 +12,9 @@ RUN apt-get install -y git
 
 RUN apt-get install build-essential
 
-# Community-rewards 코드 받기
-RUN git clone https://github.com/clghks/community-rewards-frontend
-WORKDIR /usr/src/app/community-rewards-frontend
+# chainity-web 코드 받기
+RUN git clone https://github.com/JAVACAFE-STUDY/chainity-web.git
+WORKDIR /usr/src/app/chainity-web
 
 RUN git remote update
 RUN git checkout -t origin/develop
@@ -24,7 +24,7 @@ RUN npm run webpack:build
 
 # production stage
 FROM nginx:1.14.2 as production-stage
-COPY --from=build-stage /usr/src/app/community-rewards-frontend/build/www /usr/share/nginx/html
+COPY --from=build-stage /usr/src/app/chainity-web/build/www /usr/share/nginx/html
 COPY default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]
