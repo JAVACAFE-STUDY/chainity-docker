@@ -17,7 +17,7 @@ RUN git clone https://github.com/JAVACAFE-STUDY/chainity-web.git
 WORKDIR /usr/src/app/chainity-web
 
 RUN npm install
-RUN npm run webpack:build
+RUN npm run webpack:prod
 
 # production stage
 FROM nginx:1.14.2 as production-stage
